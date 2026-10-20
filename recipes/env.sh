@@ -9,8 +9,8 @@
 #   CODECPACK_WORK   scratch for sources and objects            (default $PHOREPOC_BUILD/codecpack-work)
 #   ARCH             arm | x32                                  (default arm)
 #   JOBS             parallel compile jobs                      (default 4)
-#   PP_WRAPPERS      directory holding bin/pp-gcc and bin/pp-g++, the "pure Open C" compiler wrappers that core's
-#                    os/tools/phorepoc-x86/cxxrt/mk_pure_wrappers.sh writes (default $CODECPACK_WORK/lsc)
+#   PP_WRAPPERS      directory holding bin/pp-gcc and bin/pp-g++, the "pure Open C" compiler wrappers that the pdk's
+#                    tools/toolchain/mk_pure_wrappers.sh writes (default $CODECPACK_WORK/lsc)
 #   PP_CC / PP_CXX   override the two wrapper paths individually
 : "${PHOREPOC_BUILD:?set PHOREPOC_BUILD (the output root; archives go to \$PHOREPOC_BUILD/codecpack/)}"
 ARCH=${ARCH:-arm}

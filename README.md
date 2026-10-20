@@ -24,7 +24,7 @@ stops if configure does not report `License: LGPL version 2.1 or later`.
 | `recipes/aac_codecpack.sh` | the small AAC-only FFmpeg tree and the generated mmp for `ariheaacdecwrapper` |
 | `recipes/ffmpeg_small_tx.py`, `ffmpeg_small_stack.py` | the AAC tree's patches (static data, VLC scratch on an 8 KB stack) |
 | `recipes/openh264_enc.sh` | OpenH264 2.4.1 encoder archive, ARM |
-| `recipes/mk_wrappers.sh` | writes the `pp-gcc` / `pp-g++` compiler wrappers (core's `mk_pure_wrappers.sh`) |
+| `recipes/mk_wrappers.sh` | writes the `pp-gcc` / `pp-g++` compiler wrappers (the pdk's `tools/toolchain/mk_pure_wrappers.sh`) |
 | `recipes/make_fft_samples.sh` | makes the test clips for `phefftest` (needs a stock `ffmpeg` with x264/libvpx; not part of the build) |
 | `recipes/env.sh` | the environment all recipes share |
 | `build.sh` | all recipes in order, for one `ARCH` |

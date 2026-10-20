@@ -8,7 +8,7 @@
 #       ghcr.io/phorepoc/web ./build.sh
 #
 # env: PHOREPOC_BUILD (required), ARCH (arm|x32, default arm), JOBS, CODECPACK_WORK, PP_WRAPPERS (see recipes/env.sh)
-# Steps:  1. the compiler wrappers (skipped when PP_WRAPPERS holds them; needs PHOREPOC_CORE + PHOREPOC_PDK otherwise)
+# Steps:  1. the compiler wrappers (skipped when PP_WRAPPERS holds them; needs PHOREPOC_PDK otherwise)
 #         2. FFmpeg media archives + headers        -> $PHOREPOC_BUILD/codecpack/media-<arch>/
 #         3. ARCH=arm: OpenH264 encoder archive     -> $PHOREPOC_BUILD/codecpack/openh264-arm/
 #         4. the AAC source tree + generated mmp    -> $PHOREPOC_BUILD/codecpack/{ffmpeg-src,ariheaacdecwrapper.mmp}
