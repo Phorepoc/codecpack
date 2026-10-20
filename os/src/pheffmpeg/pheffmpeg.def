@@ -1,0 +1,10 @@
+EXPORTS
+	PheFfVersion @ 1 NONAME
+	PheAacOpen @ 2 NONAME
+	PheAacDecode @ 3 NONAME
+	PheAacClose @ 4 NONAME
+	PheAacSetOutput @ 5 NONAME
+	PheVidOpen @ 6 NONAME
+	PheVidSend @ 7 NONAME
+	PheVidReceive @ 8 NONAME
+	PheVidClose @ 9 NONAME

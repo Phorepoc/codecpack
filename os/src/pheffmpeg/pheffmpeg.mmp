@@ -1,0 +1,27 @@
+// Copyright The Phorepoc Authors
+// SPDX-License-Identifier: EPL-1.0
+
+// pheffmpeg.mmp -- OURS: the LGPL FFmpeg media set (libavcodec +
+// libavutil archives from recipes/ffmpeg_media.sh) as its OWN replaceable DLL, so the EPL/OURS controller
+// (phevidctl.dll) is never statically linked with LGPL code: a user can swap pheffmpeg.dll alone. phevidctl loads it with
+// RLibrary and calls the four ordinals of pheffmpeg.def (a missing DLL = video without sound).
+TARGET			pheffmpeg.dll
+TARGETTYPE		dll
+UID				0x1000008d 0xE70157D6
+CAPABILITY		All -Tcb
+VENDORID		0
+EPOCALLOWDLLDATA
+
+OS_LAYER_SYSTEMINCLUDE_SYMBIAN
+OS_LAYER_LIBC_SYSTEMINCLUDE
+#ifdef MARM
+USERINCLUDE		../../../codecpack/media-arm/include
+#else
+USERINCLUDE		../../../codecpack/media-x32/include
+#endif
+
+SOURCEPATH		.
+SOURCE			pheffmpeg.c
+
+LIBRARY			euser.lib libc.lib libm.lib libpthread.lib
+SMPSAFE

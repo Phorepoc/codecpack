@@ -1,0 +1,24 @@
+codecpack: the Phorepoc codec pack
+Copyright The Phorepoc Authors (see AUTHORS)
+
+Phorepoc was founded by Kyriakos Bompotis.
+
+This repository holds the recipes and the Symbian-side glue that build FFmpeg and OpenH264 for Phorepoc. The codec
+sources are not copied here: the recipes fetch the pinned releases at build time and check their SHA-256.
+Our own files are under the Eclipse Public License 1.0 (LICENSE). Files derived from the Symbian platform source keep
+Nokia's copyright notice.
+
+FFmpeg (https://ffmpeg.org), LGPL 2.1 or later (LICENSES/LGPL-2.1.txt)
+  Fetched at build time and configured without --enable-gpl, --enable-version3 or --enable-nonfree; the recipe asserts
+  the configure licence line. It is built as the separate, replaceable DLL pheffmpeg.dll (and the AAC decoder
+  library), never statically linked into an EPL component, so users can relink or replace it: the LGPL condition.
+
+OpenH264 (https://github.com/cisco/openh264), Copyright (c) 2013, Cisco Systems, BSD-2-Clause
+  (LICENSES/BSD-2-Clause-OpenH264.txt). Built from source here. Cisco's patent licence for H.264 covers only the
+  binaries Cisco itself distributes, not a build from source.
+
+Patents: AAC and H.264 are patent-grey in many jurisdictions. This pack is distributed as source plus build
+instructions only. It is not part of any Phorepoc image; users install a build of it themselves, through the download
+app, and are responsible for any licences their use needs.
+
+Thanks to the FFmpeg and OpenH264 projects.

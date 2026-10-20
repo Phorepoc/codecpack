@@ -1,0 +1,21 @@
+// Copyright The Phorepoc Authors
+// SPDX-License-Identifier: EPL-1.0
+
+// phefftest.mmp -- OURS: the FFmpeg media set (LGPL, recipes/ffmpeg_media.sh) as
+// PREBUILT ARCHIVES (registry arm_archives / x32_archives) linked into an Open C EXE that demuxes + software-decodes the in-ROM
+// samples (Z:\resource\phefftest\) and prints "PH: fft" lines. SSM_TEST=phefftest stages it at boot.
+TARGET			phefftest.exe
+TARGETTYPE		exe
+UID				0x1000007a 0xE70157B5
+CAPABILITY		None
+EPOCHEAPSIZE	0x100000 0x10000000
+EPOCSTACKSIZE	0x40000
+OS_LAYER_SYSTEMINCLUDE_SYMBIAN
+OS_LAYER_LIBC_SYSTEMINCLUDE
+USERINCLUDE		../../../codecpack/media-arm/include
+SOURCEPATH		.
+SOURCE			fft_main.c fft_sys.cpp
+STATICLIBRARY	libcrt0.lib
+LIBRARY			libc.lib libm.lib libpthread.lib
+LIBRARY			euser.lib
+SMPSAFE
