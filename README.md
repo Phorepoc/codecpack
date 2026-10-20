@@ -56,6 +56,9 @@ Output: `$PHOREPOC_BUILD/codecpack/media-<arch>/{lib,include}`, `openh264-arm/` 
 
 Then build the components with this repository as a layer, next to your board's adaptation:
 
+
+The x32 `pheffmpeg` also links the C++ runtime's `libphcompat` and `libgcc`: build the [cxxrt](https://github.com/Phorepoc/cxxrt) layer first and add it to `PHOREPOC_ADAPTATIONS`.
+
 ```sh
 PHOREPOC_ADAPTATIONS=<board adaptations>:<path to codecpack> ph component build -arch arm pheffmpeg phefftest
 PHOREPOC_ADAPTATIONS=<board adaptations>:<path to codecpack> ph component build ariheaacdecwrapper \
