@@ -28,6 +28,11 @@ mkdir -p "$CP" "$CODECPACK_WORK" "$DL"
 # fetch URL FILE SHA256 -- download into $DL once, verify always
 fetch() {
   local url=$1 file=$2 sha=$3
-  [ -f "$DL/$file" ] || curl -sSfL -o "$DL/$file" "$url"
+  if [ ! -f "$DL/$file" ]; then
+    # curl when the image has it, else Python (every toolchain image has python3)
+    if command -v curl >/dev/null; then curl -sSfL -o "$DL/$file.part" "$url"
+    else python3 -c 'import sys, urllib.request; urllib.request.urlretrieve(sys.argv[1], sys.argv[2])' "$url" "$DL/$file.part"; fi
+    mv "$DL/$file.part" "$DL/$file"
+  fi
   echo "$sha *$DL/$file" | sha256sum -c - >/dev/null || { echo "$file: checksum mismatch"; exit 1; }
 }
