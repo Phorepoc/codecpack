@@ -1,5 +1,5 @@
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: EPL-1.0
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
 """ffmpeg_media_patch -- source patches for the phone media FFmpeg (recipes/ffmpeg_media.sh). Idempotent.
 

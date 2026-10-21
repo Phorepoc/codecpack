@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: EPL-1.0
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 #
 # make_fft_samples.sh -- the phefftest samples into $PHOREPOC_BUILD/codecpack/fft-test/:
 # 2 s of ffmpeg's testsrc/sine, 320x240 25 fps: s264.mp4 (H.264 + AAC-LC) and svp8.webm (VP8 + Vorbis);

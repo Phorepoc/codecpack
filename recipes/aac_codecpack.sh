@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: EPL-1.0
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 #
 # aac_codecpack.sh -- the OPTIONAL AAC codec pack. AAC is a grey area (patent pools still license it), so it is
 # published as SOURCE + these build instructions only and never goes into a prebuilt image; whoever builds it decides

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: EPL-1.0
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 #
 # openh264_enc.sh -- Cisco OpenH264 2.4.1 ENCODER (BSD-2-Clause) as a static archive for ARM. Decoder not built.
 # FFmpeg here has NO H.264 encoder (decoders only, LGPL; the only FFmpeg H.264 encoder is libx264 = GPL: refused).

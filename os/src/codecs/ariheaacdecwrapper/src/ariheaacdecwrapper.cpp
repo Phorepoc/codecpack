@@ -1,5 +1,5 @@
 // Copyright The Phorepoc Authors
-// SPDX-License-Identifier: EPL-1.0
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
 // ariheaacdecwrapper.cpp -- OURS, part of the OPTIONAL AAC codec pack (AAC is a
 // grey area -> published as source + build instructions only, never in a prebuilt image; recipes/).

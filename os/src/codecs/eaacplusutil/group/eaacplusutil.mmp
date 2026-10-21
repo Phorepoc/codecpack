@@ -1,5 +1,5 @@
 // Copyright The Phorepoc Authors
-// SPDX-License-Identifier: EPL-1.0
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
 // eaacplusutil.mmp -- OURS (the optional AAC codec pack): the AAC header utility, behind the release stub's frozen
 // export list (os.mmaudio/eaacplusutil_stub/eabi/eaacplusutil_stubu.def, given in registry/components_codecpack.py)

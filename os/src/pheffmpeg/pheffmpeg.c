@@ -1,5 +1,5 @@
 /* Copyright The Phorepoc Authors
- * SPDX-License-Identifier: EPL-1.0 */
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later */
 
 /* pheffmpeg.c -- OURS: a small C API over FFmpeg's AAC decoder for phevidctl (see pheffmpeg.mmp). No writable static data of
    our own (all state is in the heap object; FFmpeg's own tables are why the DLL is EPOCALLOWDLLDATA).

@@ -1,5 +1,5 @@
 // Copyright The Phorepoc Authors
-// SPDX-License-Identifier: EPL-1.0
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
 // pheffmpeg.mmp -- OURS: the LGPL FFmpeg media set (libavcodec +
 // libavutil archives from recipes/ffmpeg_media.sh) as its OWN replaceable DLL, so the EPL/OURS controller

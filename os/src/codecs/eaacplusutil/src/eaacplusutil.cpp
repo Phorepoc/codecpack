@@ -1,5 +1,5 @@
 // Copyright The Phorepoc Authors
-// SPDX-License-Identifier: EPL-1.0
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
 // eaacplusutil.cpp -- OURS (the optional AAC codec pack): the AAC stream-header utility the S60
 // AAC controller uses (mmaudio_plat/eaacplusutil_api). The release ships only a stub (os.mmaudio/eaacplusutil_stub:
