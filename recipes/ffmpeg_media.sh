@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+# SPDX-License-Identifier: Apache-2.0
 #
 # ffmpeg_media.sh -- the "phone media" FFmpeg 6.1.2 as STATIC ARCHIVES.
 # LGPL 2.1+ ONLY (no --enable-gpl/version3/nonfree; the configure licence line is asserted). H.264/HEVC/AAC are patent-grey:

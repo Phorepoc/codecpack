@@ -1,5 +1,5 @@
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+# SPDX-License-Identifier: Apache-2.0
 
 """ffmpeg_small_tx -- trims FFmpeg's libavutil/tx_template.c for the AAC codec pack (recipes/aac_codecpack.sh).
 

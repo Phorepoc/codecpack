@@ -5,8 +5,7 @@ Phorepoc was founded by Kyriakos Bompotis.
 
 This repository holds the recipes and the Symbian-side glue that build FFmpeg and OpenH264 for Phorepoc. The codec
 sources are not copied here: the recipes fetch the pinned releases at build time and check their SHA-256.
-Our own files are under the Eclipse Public License 2.0 (LICENSES/EPL-2.0.txt) with GNU General Public License, version 2 or later
-as a Secondary License. The Nokia-derived files in this repo are our updated versions, distributed under EPL-2.0 with GPL-2.0-or-later as a Secondary License (relicensed from EPL-1.0 under its section 7); unmodified Symbian sources are fetched from upstream and remain EPL-1.0. Files derived from the Symbian platform source keep
+Licences: our own code is Apache-2.0 (LICENSES/Apache-2.0.txt); the Nokia-derived files are our updated versions, distributed under EPL-2.0 with GNU General Public License, version 2 or later as a Secondary License (LICENSES/EPL-2.0.txt; relicensed from EPL-1.0 under its section 7); unmodified Symbian sources are fetched from upstream and remain EPL-1.0. Files derived from the Symbian platform source keep
 Nokia's copyright notice.
 
 FFmpeg (https://ffmpeg.org), LGPL 2.1 or later (LICENSES/LGPL-2.1.txt)

@@ -1,5 +1,5 @@
 /* Copyright The Phorepoc Authors
- * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later */
+ * SPDX-License-Identifier: Apache-2.0 */
 
 /* fft_main.c -- OURS: open an in-ROM sample with libavformat over a custom AVIOContext,
    decode every video + audio packet in software with libavcodec, print "PH: fft" lines (streams, codecs, frame counts, a

@@ -6,7 +6,7 @@ The Phorepoc codec pack: [FFmpeg](https://ffmpeg.org) (audio and video decoders 
 
 ## Why it is a separate repository
 
-- **Licence.** FFmpeg is LGPL 2.1+. Phorepoc is EPL-2.0, so FFmpeg is built as its own replaceable DLL
+- **Licence.** FFmpeg is LGPL 2.1+. Phorepoc is Apache-2.0 / EPL-2.0, so FFmpeg is built as its own replaceable DLL
   (`pheffmpeg.dll`) that the rest of the system loads at run time, and never ends up inside an EPL binary.
 - **Patents.** AAC and H.264 are patent-grey. The pack is published as source and build instructions only, is never in a
   Phorepoc image, and is installed later by the user through the download app.
@@ -70,7 +70,7 @@ x32 builds `pheffmpeg_x32` (its libswresample comes from the C-only archive set,
 
 ## Licence
 
-EPL-2.0 with GPL-2.0-or-later as a Secondary License for our files (see `LICENSES/EPL-2.0.txt`; the Nokia-derived files are our updated versions relicensed from EPL-1.0 under its section 7, unmodified Symbian sources are fetched from upstream and remain EPL-1.0), copyright The Phorepoc Authors (`AUTHORS`). FFmpeg is LGPL-2.1+ and OpenH264 is
+Apache-2.0 for our own code (see `LICENSES/Apache-2.0.txt`); the Nokia-derived files are EPL-2.0 with GPL-2.0-or-later as a Secondary License (`LICENSES/EPL-2.0.txt`), copyright The Phorepoc Authors (`AUTHORS`). FFmpeg is LGPL-2.1+ and OpenH264 is
 BSD-2-Clause; `NOTICE` and `LICENSES/` have the details, including the patent note.
 
 Contributions are welcome under the same terms: add yourself to `AUTHORS`.

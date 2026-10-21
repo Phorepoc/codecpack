@@ -1,5 +1,5 @@
 // Copyright The Phorepoc Authors
-// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 
 // phefftest.mmp -- OURS: the FFmpeg media set (LGPL, recipes/ffmpeg_media.sh) as
 // PREBUILT ARCHIVES (registry arm_archives / x32_archives) linked into an Open C EXE that demuxes + software-decodes the in-ROM

@@ -1,5 +1,5 @@
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+# SPDX-License-Identifier: Apache-2.0
 
 """components_codecpack -- the codec pack's components (merged into core's registry when this repository is a layer:
 PHOREPOC_ADAPTATIONS=<board adaptations>:<path to codecpack>, see the pdk's tools/emitter/paths.py). Paths are

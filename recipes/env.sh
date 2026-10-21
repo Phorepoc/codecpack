@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+# SPDX-License-Identifier: Apache-2.0
 #
 # env.sh -- sourced by every recipe. Plain bash, meant to run INSIDE a Phorepoc toolchain container (see README.md);
 # nothing here calls docker. Configuration, all by environment:
