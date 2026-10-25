@@ -1,47 +1,29 @@
 # codecpack
 
-The Phorepoc codec pack: [FFmpeg](https://ffmpeg.org) (audio and video decoders and demuxers) and
-[OpenH264](https://github.com/cisco/openh264) (H.264 encoder), ported to Symbian for
-[Phorepoc](https://github.com/Phorepoc).
+The codec pack brings modern audio and video formats to [Phorepoc](https://github.com/Phorepoc). It's
+[FFmpeg](https://ffmpeg.org) and [OpenH264](https://github.com/cisco/openh264) ported to Symbian, so the phone can play
+H.264, HEVC, VP8 and VP9 video and AAC, MP3, Opus, Vorbis and FLAC audio in MP4, Matroska and Ogg files. Without it,
+games and apps with MP4 video play silently.
 
-## Why it is a separate repository
+You don't build it into an image. Users install it from Get Apps when they want it.
 
-- **Licence.** FFmpeg is LGPL 2.1+. Phorepoc is Apache-2.0 / EPL-2.0, so FFmpeg is built as its own replaceable DLL
-  (`pheffmpeg.dll`) that the rest of the system loads at run time, and never ends up inside an EPL binary.
-- **Patents.** AAC and H.264 are patent-grey. The pack is published as source and build instructions only, is never in a
-  Phorepoc image, and is installed later by the user through the download app.
+## Why it lives on its own
 
-FFmpeg and OpenH264 are not copied here: the recipes fetch the pinned releases (version and SHA-256 are in the scripts)
-at build time. FFmpeg is never configured with `--enable-gpl`, `--enable-version3` or `--enable-nonfree`; the recipe
-stops if configure does not report `License: LGPL version 2.1 or later`.
+There are two reasons. The first is the license. FFmpeg is LGPL, so it's built as its own library (`pheffmpeg.dll`) that
+the system loads at run time. It never ends up inside any of Phorepoc's own binaries, and you can swap it for your own
+build.
 
-## Layout
+The second is patents. AAC and H.264 are in a grey area, so we only publish the source and the recipe. The pack is
+never part of a Phorepoc image, and it's up to each user whether to install it.
 
-| path | what |
-|---|---|
-| `recipes/ffmpeg_media.sh` | FFmpeg 6.1.2 media set (H.264, HEVC, VP8/9, MPEG-2, AAC, MP3, Opus, Vorbis, FLAC; MP4, Matroska, Ogg ...) as static archives, `ARCH=arm` (NEON) or `x32` |
-| `recipes/ffmpeg_media_patch.py` | its source patches: FFT tables cut to 4096 points, 256 KB worker stacks |
-| `recipes/aac_codecpack.sh` | the small AAC-only FFmpeg tree and the generated mmp for `ariheaacdecwrapper` |
-| `recipes/ffmpeg_small_tx.py`, `ffmpeg_small_stack.py` | the AAC tree's patches (static data, VLC scratch on an 8 KB stack) |
-| `recipes/openh264_enc.sh` | OpenH264 2.4.1 encoder archive, ARM |
-| `recipes/mk_wrappers.sh` | writes the `pp-gcc` / `pp-g++` compiler wrappers (the pdk's `tools/toolchain/mk_pure_wrappers.sh`) |
-| `recipes/make_fft_samples.sh` | makes the test clips for `phefftest` (needs a stock `ffmpeg` with x264/libvpx; not part of the build) |
-| `recipes/env.sh` | the environment all recipes share |
-| `build.sh` | all recipes in order, for one `ARCH` |
-| `os/src/pheffmpeg/` | `pheffmpeg.dll`: the C API over FFmpeg's decoders that `phevidctl` (core) loads |
-| `os/src/phefftest/` | an Open C test program: demux and decode clips with libavformat/libavcodec |
-| `os/src/codecs/ariheaacdecwrapper/` | the HE-AAC decoder library behind the release's Aricent MMF plug-in, over FFmpeg's AAC decoder |
-| `os/src/codecs/eaacplusutil/` | the AAC stream-header utility behind the release stub's frozen exports |
-| `registry/components_codecpack.py` | the components, merged into core's registry when this repository is a layer |
+We don't keep copies of FFmpeg or OpenH264 here. The recipes download the exact releases they name and check them
+against a SHA-256. FFmpeg is never configured with `--enable-gpl`, `--enable-version3` or `--enable-nonfree`, and the
+build stops if FFmpeg reports any license other than LGPL 2.1 or later.
 
 ## Building
 
-The recipes are plain bash for the Phorepoc toolchain images (see
-[toolchain](https://github.com/Phorepoc/toolchain)): `ghcr.io/phorepoc/web` for ARM and x32 (it is `base`, which carries
-the Arm GNU toolchain and GCC with the x32 runtime, plus CMake and Python). They need core and the
-[pdk](https://github.com/Phorepoc/pdk) checked out, the include tree exported (`ph source export -a`), and
-`PHOREPOC_BUILD` set to the same build directory core uses. Configuration is all environment: `PHOREPOC_BUILD`,
-`CODECPACK_WORK` (scratch, default `$PHOREPOC_BUILD/codecpack-work`), `ARCH` (`arm`|`x32`), `JOBS`.
+The recipes run in the toolchain's `ghcr.io/phorepoc/web` image. Check out core and the
+[pdk](https://github.com/Phorepoc/pdk) next to this repository and run `ph source export -a` once. Then:
 
 ```sh
 docker run --rm -e ARCH=arm -e JOBS=4 -e PHOREPOC_BUILD=/build \
@@ -50,27 +32,31 @@ docker run --rm -e ARCH=arm -e JOBS=4 -e PHOREPOC_BUILD=/build \
     ghcr.io/phorepoc/web ./build.sh
 ```
 
-Output: `$PHOREPOC_BUILD/codecpack/media-<arch>/{lib,include}`, `openh264-arm/` (ARM), and the AAC tree
-`ffmpeg-src/` with `ariheaacdecwrapper.mmp`. `build.sh` first writes the compiler wrappers (skipped when
-`PP_WRAPPERS` already holds `bin/pp-gcc`).
+Use `ARCH=x32` for the PC. The libraries land in `$PHOREPOC_BUILD/codecpack/`.
 
-Then build the components with this repository as a layer, next to your board's adaptation:
-
-
-The x32 `pheffmpeg` also links the C++ runtime's `libphcompat` and `libgcc`: build the [cxxrt](https://github.com/Phorepoc/cxxrt) layer first and add it to `PHOREPOC_ADAPTATIONS`.
+Next, build the Symbian components with this repository added to `PHOREPOC_ADAPTATIONS`, after your device's own
+repositories. On the PC, `pheffmpeg` also needs [cxxrt](https://github.com/Phorepoc/cxxrt), so build that first and add
+it too.
 
 ```sh
-PHOREPOC_ADAPTATIONS=<board adaptations>:<path to codecpack> ph component build -arch arm pheffmpeg phefftest
-PHOREPOC_ADAPTATIONS=<board adaptations>:<path to codecpack> ph component build ariheaacdecwrapper \
+PHOREPOC_ADAPTATIONS=<device repositories>:<path to codecpack> ph component build -arch arm pheffmpeg phefftest
+PHOREPOC_ADAPTATIONS=<device repositories>:<path to codecpack> ph component build ariheaacdecwrapper \
     ariheaacdecmmfcodec aacdecoderconfig eaacplusutil eaacplusaudiocontrollerutility \
     aacaudioplaycontrollerplugin aacaudioplaycontrollerrecognizer
 ```
 
-x32 builds `pheffmpeg_x32` (its libswresample comes from the C-only archive set, which `build.sh` makes too).
+## What's in here
 
-## Licence
+- `recipes/` downloads and builds FFmpeg and OpenH264. `build.sh` runs them all in order.
+- `os/src/pheffmpeg/` is the library the video player loads, a small C API over FFmpeg's decoders.
+- `os/src/codecs/` has the AAC decoder behind Symbian's own audio framework, now running on FFmpeg.
+- `os/src/phefftest/` is a test program that opens and decodes sample clips.
+- `registry/components_codecpack.py` lists the components.
 
-Apache-2.0 for our own code (see `LICENSES/Apache-2.0.txt`); the Nokia-derived files are EPL-2.0 with GPL-2.0-or-later as a Secondary License (`LICENSES/EPL-2.0.txt`), copyright The Phorepoc Authors (`AUTHORS`). FFmpeg is LGPL-2.1+ and OpenH264 is
-BSD-2-Clause; `NOTICE` and `LICENSES/` have the details, including the patent note.
+## License
 
-Contributions are welcome under the same terms: add yourself to `AUTHORS`.
+Our code is Apache-2.0, and the Symbian files we've changed are EPL-2.0 with GPL-2.0-or-later as a Secondary License.
+FFmpeg is LGPL-2.1 or later and OpenH264 is BSD-2-Clause. `NOTICE` and `LICENSES/` have the details, including the
+note on patents.
+
+Contributions are welcome under the same terms. Add your name to `AUTHORS` in your first pull request.
