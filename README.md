@@ -49,6 +49,8 @@ PHOREPOC_ADAPTATIONS=<device repositories>:<path to codecpack> ph component buil
 
 - `recipes/` downloads and builds FFmpeg and OpenH264. `build.sh` runs them all in order.
 - `os/src/pheffmpeg/` is the library the video player loads, a small C API over FFmpeg's decoders.
+- `os/src/phevdecsw/` is the software video decoder plug-in (`phevdecsw.dll`) the video player finds through DevVideo; it
+  decodes through `pheffmpeg.dll`. On ARM it only takes MPEG-4 Part 2, since the PinePhone's video engine does the rest.
 - `os/src/codecs/` has the AAC decoder behind Symbian's own audio framework, now running on FFmpeg.
 - `os/src/phefftest/` is a test program that opens and decodes sample clips.
 - `registry/components_codecpack.py` lists the components.

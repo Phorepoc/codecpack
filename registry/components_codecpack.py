@@ -12,8 +12,8 @@ AAC and H.264 are patent-grey, so none of this is in an OS image: build the arch
   AAC (HE-AAC plug-in chain; the Aricent plug-in and the S60 AAC controller are the 2010 release's own code):
     ph component build ariheaacdecwrapper ariheaacdecmmfcodec aacdecoderconfig eaacplusutil \
         eaacplusaudiocontrollerutility aacaudioplaycontrollerplugin aacaudioplaycontrollerrecognizer
-  FFmpeg media set as the replaceable DLL pheffmpeg.dll (LGPL 2.1+), and its test program:
-    ph component build -arch arm pheffmpeg phefftest       (x32: pheffmpeg_x32)
+  FFmpeg media set as the replaceable DLL pheffmpeg.dll (LGPL 2.1+), the software video decoder plug-in over it, and the test:
+    ph component build -arch arm pheffmpeg phevdecsw phefftest       (x32: pheffmpeg_x32 phevdecsw_x32)
 """
 import os
 
@@ -49,9 +49,13 @@ COMPONENTS = {
                       rtti=False, defs=["__SOFTFP="], vfp=True, rom="pheffmpeg.dll", device_rom=True,
                       **{"def": os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.def")},
                       arm_archives=[f".codecpack/media-arm/lib/{a}.a" for a in ("libavcodec", "libswresample", "libavutil")]),
-    # FFmpeg x32 media archives (ARCH=x32 bash recipes/ffmpeg_media.sh) as the replaceable LGPL DLL; phevdec_sw = the
-    # phevdec decoder device with PHE_SW (calls pheffmpeg's PheVid* ordinals), built to the same ROM name phevdec.dll. x32 only
-    # (`ph component build pheffmpeg_x32 phevdec_sw`); an ARM ROM keeps the VE phevdec.
+    # OURS (2026-10-27): phevdecsw.dll, the software DevVideo decoder (src/phevdecsw, calls pheffmpeg's PheVid* ordinals; own
+    # UIDs E70157FC / E70157FD, so it sits beside a board's hardware decoder). ARM: MPEG-4 Part 2 only (the A64 VE decoder does
+    # H.264 / MPEG-2); x32: H.264, MPEG-2 and MPEG-4 Part 2. Install = sys/bin/phevdecsw.dll + resource/plugins/phevdecsw.rsc.
+    "phevdecsw": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw.mmp"), allow_wsd=True),   # (stage-timing statics)
+    "phevdecsw_x32": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw_x32.mmp"), allow_wsd=True),
+    # FFmpeg x32 media archives (ARCH=x32 bash recipes/ffmpeg_media.sh) as the replaceable LGPL DLL
+    # (`ph component build pheffmpeg_x32 phevdecsw_x32`).
     "pheffmpeg_x32": dict(mmp=os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.mmp"), cdriver=True, allow_wsd=True, static_ctors=True,
                           rtti=False, rom="pheffmpeg.dll", **{"def": os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.def")},
                           x32_archives=[".codecpack/media-x32/lib/libavcodec.a", ".codecpack/media-x32-c/lib/libswresample.a", ".codecpack/media-x32/lib/libavutil.a"]   # swresample from the C-only build (ARCH=x32 ffmpeg_media.sh without FFASM, copied to media-x32-c): its asm faulted under VirtualBox

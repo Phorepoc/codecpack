@@ -1,0 +1,31 @@
+// Copyright The Phorepoc Authors
+// SPDX-License-Identifier: Apache-2.0
+
+// E70157FC.rss -- OURS: ECOM registration of the codec pack's software DevVideo decoder phevdecsw.dll, x32 build: H.264, MPEG-2, MPEG-4 Part 2
+// (interface 0x101FB4BE = KUidDevVideoDecoderHwDevice, the one CMMFDevVideoPlay::FindDecodersL looks under).
+#include <ecom/registryinfo.rh>
+
+RESOURCE REGISTRY_INFO theInfo
+    {
+    dll_uid     = 0xE70157FC;
+    interfaces  =
+        {
+        INTERFACE_INFO
+            {
+            interface_uid   = 0x101FB4BE;
+            implementations =
+                {
+                IMPLEMENTATION_INFO
+                    {
+                    implementation_uid  = 0xE70157FD;
+                    version_no          = 1;
+                    display_name        = "Phorepoc software decoder (FFmpeg: H.264, MPEG-2, MPEG-4 Part 2)";
+                    // the MIME types it decodes, matched (with wildcards) against the query; '||' separates them
+                    default_data        = "video/H264*||video/mpeg*||video/mpeg2*||video/mp2v*||video/mp4v-es*||";
+                    // the post-processing it does itself (TPrePostProcessType bits): none
+                    opaque_data         = "0";
+                    }
+                };
+            }
+        };
+    }
