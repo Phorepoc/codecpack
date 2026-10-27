@@ -52,8 +52,11 @@ COMPONENTS = {
     # OURS (2026-10-27): phevdecsw.dll, the software DevVideo decoder (src/phevdecsw, calls pheffmpeg's PheVid* ordinals; own
     # UIDs E70157FC / E70157FD, so it sits beside a board's hardware decoder). ARM: MPEG-4 Part 2 only (the A64 VE decoder does
     # H.264 / MPEG-2); x32: H.264, MPEG-2 and MPEG-4 Part 2. Install = sys/bin/phevdecsw.dll + resource/plugins/phevdecsw.rsc.
-    "phevdecsw": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw.mmp"), allow_wsd=True),   # (stage-timing statics)
-    "phevdecsw_x32": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw_x32.mmp"), allow_wsd=True),
+    # rom_data: the ECOM registration travels with the DLL in the package (recipes/make_codecpack_sis.sh)
+    "phevdecsw": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw.mmp"), allow_wsd=True,   # (stage-timing statics)
+                      rom_data=["resource\\plugins\\phevdecsw.rsc=plugins/phevdecsw.rsc"]),
+    "phevdecsw_x32": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw_x32.mmp"), allow_wsd=True, rom="phevdecsw.dll",
+                          rom_data=["resource\\plugins\\phevdecsw.rsc=plugins/phevdecsw_x32.rsc"]),
     # FFmpeg x32 media archives (ARCH=x32 bash recipes/ffmpeg_media.sh) as the replaceable LGPL DLL
     # (`ph component build pheffmpeg_x32 phevdecsw_x32`).
     "pheffmpeg_x32": dict(mmp=os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.mmp"), cdriver=True, allow_wsd=True, static_ctors=True,
