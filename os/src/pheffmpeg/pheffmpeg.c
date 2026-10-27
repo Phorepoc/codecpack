@@ -19,6 +19,7 @@
 #include <libavutil/channel_layout.h>
 #include <libswresample/swresample.h>
 #include <libavutil/cpu.h>
+#include <libavutil/log.h>
 
 typedef struct PheAac
 {
@@ -28,6 +29,13 @@ typedef struct PheAac
     SwrContext *swr;
     int outRate, outCh;
 } PheAac;
+
+/* FFmpeg's default log callback writes to stderr, which the threads a client decodes in (the MMF controller's) have not set
+   up: the first warning faulted in Open C's vfprintf (x32). Nothing is printed. */
+static void PheFfNoLog(void *avcl, int level, const char *fmt, va_list vl)
+{
+    (void)avcl; (void)level; (void)fmt; (void)vl;
+}
 
 int PheFfVersion(void)
 {
@@ -43,6 +51,7 @@ PheAac *PheAacOpen(const unsigned char *asc, int ascLen)
     int n;
     if (!cd || ascLen <= 0)
         return NULL;
+    av_log_set_callback(PheFfNoLog);
     h = (PheAac *)calloc(1, sizeof(*h));
     if (!h)
         return NULL;
@@ -230,6 +239,7 @@ PheVid *PheVidOpen(int codec, int flags)
     PheVid *h;
     if (!cd)
         return NULL;
+    av_log_set_callback(PheFfNoLog);
     h = (PheVid *)calloc(1, sizeof(*h));
     if (!h)
         return NULL;
