@@ -52,8 +52,10 @@ COMPONENTS = {
     # OURS (2026-10-27): phevdecsw.dll, the software DevVideo decoder (src/phevdecsw, calls pheffmpeg's PheVid* ordinals; own
     # UIDs E70157FC / E70157FD, so it sits beside a board's hardware decoder). ARM: MPEG-4 Part 2 only (the A64 VE decoder does
     # H.264 / MPEG-2); x32: H.264, MPEG-2 and MPEG-4 Part 2. Install = sys/bin/phevdecsw.dll + resource/plugins/phevdecsw.rsc.
-    "phevdecsw": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw.mmp"), allow_wsd=True),   # (stage-timing statics)
-    "phevdecsw_x32": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw_x32.mmp"), allow_wsd=True),
+    # sis=True: installed, so LOADED FROM RAM -- the loader validates the image (export directory inside the code part;
+    # without it RLibrary::GetInfo / ECOM's plug-in check answer KErrCorrupt and DevVideo never sees the decoder)
+    "phevdecsw": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw.mmp"), allow_wsd=True, sis=True),   # (stage-timing statics)
+    "phevdecsw_x32": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw_x32.mmp"), allow_wsd=True, sis=True),
     # FFmpeg x32 media archives (ARCH=x32 bash recipes/ffmpeg_media.sh) as the replaceable LGPL DLL
     # (`ph component build pheffmpeg_x32 phevdecsw_x32`).
     "pheffmpeg_x32": dict(mmp=os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.mmp"), cdriver=True, allow_wsd=True, static_ctors=True,
