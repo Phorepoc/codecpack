@@ -14,10 +14,11 @@ EPOCALLOWDLLDATA
 
 OS_LAYER_SYSTEMINCLUDE_SYMBIAN
 OS_LAYER_LIBC_SYSTEMINCLUDE
-#ifdef MARM
-USERINCLUDE		../../../codecpack/media-arm/include
-#else
+// (MARM is defined for every build: the pdk reads mmps as the ARMV5 line; its x32 build adds PHOREPOC_X32)
+#ifdef PHOREPOC_X32
 USERINCLUDE		../../../codecpack/media-x32/include
+#else
+USERINCLUDE		../../../codecpack/media-arm/include
 #endif
 
 SOURCEPATH		.
