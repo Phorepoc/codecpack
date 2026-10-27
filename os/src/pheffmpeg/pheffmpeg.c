@@ -200,7 +200,7 @@ int PheAacSetOutput(PheAac *h, int rate, int ch)
 /* ------------------------------------------------------------------------------------------------------------------
    Software video decode (2026-10-16, Path C x86: no hardware video engine there). phevdec's PHE_SW build (src/phevdec) feeds
    Annex B H.264 / MPEG-2 here and takes NV12 pictures back, in DISPLAY order (libavcodec's own reorder).
-     PheVidOpen(codec, flags)       codec 0 = H.264, 1 = MPEG-2; flags bit 0 = the input is an arbitrary byte-stream chunking
+     PheVidOpen(codec, flags)       codec 0 = H.264, 1 = MPEG-2, 2 = MPEG-4 Part 2; flags bit 0 = the input is an arbitrary byte-stream chunking
                                     (av_parser splits access units), 0 = every buffer already is one coded picture;
                                     bits 8-15 = decoder threads (frame threading), 0/1 = one
      PheVidSend(h, data, len, pts)  pts in microseconds (-1 = none); data == NULL, len == 0 = end of stream (drain)
@@ -226,7 +226,7 @@ void PheVidClose(PheVid *h);
 PheVid *PheVidOpen(int codec, int flags)
 {
     int useParser = flags & 1, threads = (flags >> 8) & 0xFF;
-    const AVCodec *cd = avcodec_find_decoder(codec == 1 ? AV_CODEC_ID_MPEG2VIDEO : AV_CODEC_ID_H264);
+    const AVCodec *cd = avcodec_find_decoder(codec == 1 ? AV_CODEC_ID_MPEG2VIDEO : (codec == 2 ? AV_CODEC_ID_MPEG4 : AV_CODEC_ID_H264));
     PheVid *h;
     if (!cd)
         return NULL;
