@@ -37,9 +37,9 @@ python3 "$RECIPES/ffmpeg_media_patch.py" "$SRC"
 CC=$PP_CC
 [ -x "$CC" ] || { echo "no $CC -- write the pure Open C wrappers first (recipes/mk_wrappers.sh, or set PP_WRAPPERS / PP_CC)"; exit 1; }
 
-DEC="h264 hevc vp8 vp9 mpeg2video aac mp3float opus vorbis flac pcm_s16le"
+DEC="h264 hevc vp8 vp9 mpeg2video mpeg4 aac mp3float opus vorbis flac pcm_s16le"
 DEMUX="mov matroska ogg mp3 mpegps mpegts flac wav aac"
-PARSE="h264 hevc vp8 vp9 mpegvideo aac aac_latm mpegaudio opus vorbis flac"
+PARSE="h264 hevc vp8 vp9 mpegvideo mpeg4video aac aac_latm mpegaudio opus vorbis flac"
 BSF="h264_mp4toannexb hevc_mp4toannexb aac_adtstoasc extract_extradata vp9_superframe vp9_superframe_split"
 EN=()
 for x in $DEC;   do EN+=("--enable-decoder=$x"); done
