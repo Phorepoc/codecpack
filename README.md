@@ -5,7 +5,7 @@ The codec pack brings modern audio and video formats to [Phorepoc](https://githu
 H.264, HEVC, VP8 and VP9 video and AAC, MP3, Opus, Vorbis and FLAC audio in MP4, Matroska and Ogg files. Without it,
 games and apps with MP4 video play silently.
 
-You don't build it into an image. Users install it from the Catalogue when they want it.
+You don't build it into an image. Users install it from Catalogue when they want it.
 
 ## Why it lives on its own
 
