@@ -9,7 +9,7 @@
                                                      -> PCM frames (per channel) written, 0 = none yet, <0 = error
                                                         pcm = interleaved S16, ch = 1 or 2 (channels > 2: first two kept)
      PheAacSetOutput(h, rate, ch)  (ordinal 5)       -> 0 ok: from now on PheAacDecode returns rate/ch interleaved S16 converted with
-                                                        libswresample (any source rate/layout; the A64 sound path takes 48000 Hz stereo)
+                                                        libswresample (any source rate/layout; the ARM board's sound path takes 48000 Hz stereo)
      PheAacClose(h)                                                                                                   */
 #include <stdlib.h>
 #include <string.h>

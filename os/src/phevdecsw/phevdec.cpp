@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // phevdec.cpp -- OURS: phevdecsw.dll, the SOFTWARE DevVideo decoder hw device of the codec pack (decoding through the
-// separately installed LGPL pheffmpeg.dll). Derived from the A64 VE decoder (adaptation-a64 src/phevdec, VDU rung V4;
+// separately installed LGPL pheffmpeg.dll). Derived from a hardware VE decoder (VDU rung V4;
 // its PHE_SW build, moved here 2026-10-27 so every patent-grey decoder ships with the codec pack). PHE_MP4V (the ARM
 // build) = MPEG-4 Part 2 only, beside the VE decoder; without it (x32) = everything pheffmpeg decodes.
 #include <e32debug.h>
@@ -661,7 +661,7 @@ TBool CPheVideoDecoder::StepSw()
 	if (!iPreallocDone && len > 0)
 		{
 		// pre-allocate (and touch) the picture buffers the first frames will use, BEFORE the first picture exists (the controller starts its clock at the first
-		// picture): growing the heap during playback cost 100-800 ms per picture for the first ~7 (VirtualBox stage timing: "picture alloc"). The size is read
+		// picture): growing the heap during playback cost 100-800 ms per picture for the first ~7 (VM stage timing: "picture alloc"). The size is read
 		// from the SPS in the first buffer.
 		iPreallocDone = ETrue;
 		TVideoInputBuffer tmp;

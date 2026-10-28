@@ -22,7 +22,7 @@ SHA256=3b624649725ecdc565c903ca6643d41f33bd49239922e45c9b1442c63dca4e38
 fetch "https://ffmpeg.org/releases/ffmpeg-$VER.tar.xz" "ffmpeg-$VER.tar.xz" "$SHA256"
 
 # x32 has TWO builds that ship together (pheffmpeg_x32): FFASM=1 -> media-x32 (libavcodec + libavutil with the x86 SIMD kernels) and the default C-only
-# one -> media-x32-c (its libswresample: the asm one faulted under VirtualBox). Separate source-build trees too (different configure).
+# one -> media-x32-c (its libswresample: the asm one faulted under a VM). Separate source-build trees too (different configure).
 SUF=""; [ "$ARCH" = x32 ] && [ "${FFASM:-0}" != 1 ] && SUF="-c"
 OUT=$CP/media-$ARCH$SUF
 SRC=$CODECPACK_WORK/ffmpeg-media-src
@@ -65,7 +65,7 @@ fi
 ASM=(--disable-asm --disable-x86asm --disable-inline-asm)
 [ "${FFASM:-0}" = 1 ] && ASM=()
 [ "$ARCH" = arm ] && [ "${FFASM:-0}" = 1 ] && ASM=(--enable-neon)
-# x32 (2026-10-16, VirtualBox MP4 speed): FFASM=1 = the x86 SIMD kernels (nasm -f elfx32; the container has no nasm: it is unpacked once into
+# x32 (2026-10-16, VM MP4 speed): FFASM=1 = the x86 SIMD kernels (nasm -f elfx32; the container has no nasm: it is unpacked once into
 # $CODECPACK_WORK/nasm/root/usr/bin/nasm, or set NASM -- `apt-get download nasm; dpkg -x nasm_*.deb $CODECPACK_WORK/nasm/root`). Runtime CPU detection stays on (cpuid; AVX
 # needs OSXSAVE, which our kernel never sets, so the guest ends up on SSE2/SSSE3/SSE4). Inline asm stays off.
 [ "$ARCH" = x32 ] && [ "${FFASM:-0}" = 1 ] && NASM=${NASM:-$CODECPACK_WORK/nasm/root/usr/bin/nasm}

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // phevdecsw.mmp -- OURS: the codec pack's software DevVideo decoder (phevdecsw.dll, UIDs E70157FC / E70157FD), ARM
-// build: MPEG-4 Part 2 only (PHE_MP4V) -- the A64 Video Engine decoder in the ROM does H.264 / MPEG-2. Decodes through
+// build: MPEG-4 Part 2 only (PHE_MP4V) -- the hardware video decoder in the ROM does H.264 / MPEG-2. Decodes through
 // pheffmpeg.dll. Installed with the codec pack (sys/bin + resource/plugins), never in an OS image.
 
 TARGET			phevdecsw.dll

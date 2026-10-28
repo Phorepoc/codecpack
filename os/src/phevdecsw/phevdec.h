@@ -6,7 +6,7 @@
 // CMMFDevVideoPlay (devvideo.dll) like any 2010 decoder; the decoding is pheffmpeg.dll's (LGPL FFmpeg, PheVid* ordinals).
 // Installed with the codec pack, never part of an OS image (H.264 / MPEG-2 / MPEG-4 Part 2 are patent-grey).
 //
-// Formats (SetInputFormatL; the ARM build, PHE_MP4V, takes only video/mp4v-es -- the A64 VE decoder does the others):
+// Formats (SetInputFormatL; the ARM build, PHE_MP4V, takes only video/mp4v-es -- the hardware decoder does the others):
 //   video/H264                    Annex B byte stream, SPS + PPS in band
 //   video/mpeg, video/mpeg2, video/mp2v   MPEG-2 video elementary stream
 //   video/mp4v-es                 MPEG-4 Part 2 elementary stream, the VOL header in band before the first picture

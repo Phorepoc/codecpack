@@ -50,7 +50,7 @@ COMPONENTS = {
                       **{"def": os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.def")},
                       arm_archives=[f".codecpack/media-arm/lib/{a}.a" for a in ("libavcodec", "libswresample", "libavutil")]),
     # OURS (2026-10-27): phevdecsw.dll, the software DevVideo decoder (src/phevdecsw, calls pheffmpeg's PheVid* ordinals; own
-    # UIDs E70157FC / E70157FD, so it sits beside a board's hardware decoder). ARM: MPEG-4 Part 2 only (the A64 VE decoder does
+    # UIDs E70157FC / E70157FD, so it sits beside a board's hardware decoder). ARM: MPEG-4 Part 2 only (the hardware decoder does
     # H.264 / MPEG-2); x32: H.264, MPEG-2 and MPEG-4 Part 2. Install = sys/bin/phevdecsw.dll + resource/plugins/phevdecsw.rsc.
     # rom_data: the ECOM registration travels with the DLL in the package (recipes/make_codecpack_sis.sh)
     "phevdecsw": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw.mmp"), allow_wsd=True,   # (stage-timing statics)
@@ -61,7 +61,7 @@ COMPONENTS = {
     # (`ph component build pheffmpeg_x32 phevdecsw_x32`).
     "pheffmpeg_x32": dict(mmp=os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.mmp"), cdriver=True, allow_wsd=True, static_ctors=True,
                           rtti=False, rom="pheffmpeg.dll", **{"def": os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.def")},
-                          x32_archives=[".codecpack/media-x32/lib/libavcodec.a", ".codecpack/media-x32-c/lib/libswresample.a", ".codecpack/media-x32/lib/libavutil.a"]   # swresample from the C-only build (ARCH=x32 ffmpeg_media.sh without FFASM, copied to media-x32-c): its asm faulted under VirtualBox
+                          x32_archives=[".codecpack/media-x32/lib/libavcodec.a", ".codecpack/media-x32-c/lib/libswresample.a", ".codecpack/media-x32/lib/libavutil.a"]   # swresample from the C-only build (ARCH=x32 ffmpeg_media.sh without FFASM, copied to media-x32-c): its asm faulted under a VM
                           + [f"thirdparty/x86/cxxrt/{a}.a" for a in ("libphcompat", "libgcc")]),
     # FFmpeg media-set test : libavformat + libavcodec (LGPL archives from recipes/ffmpeg_media.sh)
     #   ARCH=arm bash recipes/ffmpeg_media.sh; bash recipes/make_fft_samples.sh; ARM_VFP=1 ph component build -arch arm phefftest

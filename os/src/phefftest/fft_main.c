@@ -240,7 +240,7 @@ int main(void)
     int i, j, bad = 0;
     uint32_t s, s1;
     av_log_set_callback(av_cb);
-    av_cpu_force_count(4);     /* no sysconf(_SC_NPROCESSORS_ONLN) in Open C: the PinePhone has 4 cores */
+    av_cpu_force_count(4);     /* no sysconf(_SC_NPROCESSORS_ONLN) in Open C: the ARM board has 4 cores */
     plog("start, libavcodec %s, %s, %d cpus, neon %d", av_version_info(), avcodec_license(), av_cpu_count(),
          av_get_cpu_flags() & AV_CPU_FLAG_NEON ? 1 : 0);
     for (i = 0; i < 2; i++) bad += run(files[i]) != 0;
