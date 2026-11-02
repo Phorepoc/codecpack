@@ -23,7 +23,7 @@ build stops if FFmpeg reports any license other than LGPL 2.1 or later.
 ## Building
 
 The recipes run in the toolchain's `ghcr.io/phorepoc/web` image. Check out core and the
-[pdk](https://github.com/Phorepoc/pdk) next to this repository and run `ph source export -a` once. Then:
+[pdk](https://github.com/Phorepoc/pdk) next to this repository and run `phe source export -a` once. Then:
 
 ```sh
 docker run --rm -e ARCH=arm -e JOBS=4 -e PHOREPOC_BUILD=/build \
@@ -39,8 +39,8 @@ repositories. On the PC, `pheffmpeg` also needs [cxxrt](https://github.com/Phore
 it too.
 
 ```sh
-PHOREPOC_ADAPTATIONS=<device repositories>:<path to codecpack> ph component build -arch arm pheffmpeg phefftest
-PHOREPOC_ADAPTATIONS=<device repositories>:<path to codecpack> ph component build ariheaacdecwrapper \
+PHOREPOC_ADAPTATIONS=<device repositories>:<path to codecpack> phe component build -arch arm pheffmpeg phefftest
+PHOREPOC_ADAPTATIONS=<device repositories>:<path to codecpack> phe component build ariheaacdecwrapper \
     ariheaacdecmmfcodec aacdecoderconfig eaacplusutil eaacplusaudiocontrollerutility \
     aacaudioplaycontrollerplugin aacaudioplaycontrollerrecognizer
 ```

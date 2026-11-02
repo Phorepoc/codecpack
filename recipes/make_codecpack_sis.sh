@@ -7,8 +7,8 @@
 # without the pack video falls back cleanly (DevVideo finds no decoder, the player reports the error).
 #
 #   ARCH=arm|x32 bash recipes/make_codecpack_sis.sh       (inside the toolchain container, after the components are built:
-#                                                          ph component build [-arch arm] phevdecsw pheffmpeg / phevdecsw_x32 pheffmpeg_x32,
-#                                                          ph component resources phevdecsw[_x32])
+#                                                          phe component build [-arch arm] phevdecsw pheffmpeg / phevdecsw_x32 pheffmpeg_x32,
+#                                                          phe component resources phevdecsw[_x32])
 # out: $PHOREPOC_BUILD/sis/codecpack-<arch>.sis
 set -eu
 HERE=$(cd "$(dirname "$0")/.." && pwd)

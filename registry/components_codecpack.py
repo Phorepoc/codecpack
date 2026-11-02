@@ -10,10 +10,10 @@ AAC and H.264 are patent-grey, so none of this is in an OS image: build the arch
 (build.sh), then build the components you want and install them through the download app.
 
   AAC (HE-AAC plug-in chain; the Aricent plug-in and the S60 AAC controller are the 2010 release's own code):
-    ph component build ariheaacdecwrapper ariheaacdecmmfcodec aacdecoderconfig eaacplusutil \
+    phe component build ariheaacdecwrapper ariheaacdecmmfcodec aacdecoderconfig eaacplusutil \
         eaacplusaudiocontrollerutility aacaudioplaycontrollerplugin aacaudioplaycontrollerrecognizer
   FFmpeg media set as the replaceable DLL pheffmpeg.dll (LGPL 2.1+), the software video decoder plug-in over it, and the test:
-    ph component build -arch arm pheffmpeg phevdecsw phefftest       (x32: pheffmpeg_x32 phevdecsw_x32)
+    phe component build -arch arm pheffmpeg phevdecsw phefftest       (x32: pheffmpeg_x32 phevdecsw_x32)
 """
 import os
 
@@ -44,7 +44,7 @@ COMPONENTS = {
     "aacaudioplaycontrollerplugin": dict(mmp=_AAC + "/aacaudioplaycontroller/Group/AACAudioPlayControllerPlugin.mmp"),
     "aacaudioplaycontrollerrecognizer": dict(mmp=_AAC + "/aacaudioplaycontroller/Group/AACAudioPlayControllerRecognizer.mmp"),
     # OURS (V4 audio): the LGPL FFmpeg AAC decoder as its OWN replaceable DLL (phevidctl loads it with RLibrary; never static-linked
-    # into the controller). Archives: ARCH=arm bash recipes/ffmpeg_media.sh (NEON build: RECONF=1 FFASM=1). PHOREPOC_ADAPTATIONS=<board>:<codecpack> ARM_VFP=1 ph component build -arch arm pheffmpeg
+    # into the controller). Archives: ARCH=arm bash recipes/ffmpeg_media.sh (NEON build: RECONF=1 FFASM=1). PHOREPOC_ADAPTATIONS=<board>:<codecpack> ARM_VFP=1 phe component build -arch arm pheffmpeg
     "pheffmpeg": dict(mmp=os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.mmp"), device=True, cdriver=True, allow_wsd=True, static_ctors=True,
                       rtti=False, defs=["__SOFTFP="], vfp=True, rom="pheffmpeg.dll", device_rom=True,
                       **{"def": os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.def")},
@@ -58,13 +58,13 @@ COMPONENTS = {
     "phevdecsw_x32": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw_x32.mmp"), allow_wsd=True, rom="phevdecsw.dll",
                           rom_data=["resource\\plugins\\phevdecsw.rsc=plugins/phevdecsw_x32.rsc"]),
     # FFmpeg x32 media archives (ARCH=x32 bash recipes/ffmpeg_media.sh) as the replaceable LGPL DLL
-    # (`ph component build pheffmpeg_x32 phevdecsw_x32`).
+    # (`phe component build pheffmpeg_x32 phevdecsw_x32`).
     "pheffmpeg_x32": dict(mmp=os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.mmp"), cdriver=True, allow_wsd=True, static_ctors=True,
                           rtti=False, rom="pheffmpeg.dll", **{"def": os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.def")},
                           x32_archives=[".codecpack/media-x32/lib/libavcodec.a", ".codecpack/media-x32-c/lib/libswresample.a", ".codecpack/media-x32/lib/libavutil.a"]   # swresample from the C-only build (ARCH=x32 ffmpeg_media.sh without FFASM, copied to media-x32-c): its asm faulted under a VM
                           + [f"thirdparty/x86/cxxrt/{a}.a" for a in ("libphcompat", "libgcc")]),
     # FFmpeg media-set test : libavformat + libavcodec (LGPL archives from recipes/ffmpeg_media.sh)
-    #   ARCH=arm bash recipes/ffmpeg_media.sh; bash recipes/make_fft_samples.sh; ARM_VFP=1 ph component build -arch arm phefftest
+    #   ARCH=arm bash recipes/ffmpeg_media.sh; bash recipes/make_fft_samples.sh; ARM_VFP=1 phe component build -arch arm phefftest
     "phefftest": dict(mmp=os.path.join(OS_ROOT, "src/phefftest/phefftest.mmp"), test=True, device=True, cdriver=True, allow_wsd=True,
                       static_ctors=True, rtti=False, defs=["__SOFTFP="], vfp=True, stack=0x40000,
                       arm_archives=[f".codecpack/media-arm/lib/{a}.a" for a in ("libavformat", "libavcodec", "libswscale", "libswresample", "libavutil")],

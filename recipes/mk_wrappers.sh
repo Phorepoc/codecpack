@@ -4,7 +4,7 @@
 #
 # mk_wrappers.sh -- write the "pure Open C" compiler wrappers (pp-gcc, pp-g++) the FFmpeg / OpenH264 recipes compile
 # with: the pdk's tools/toolchain/mk_pure_wrappers.sh. env: PHOREPOC_PDK (checkout, mounted in the container) plus
-# env.sh's; the include tree must be exported first (`ph source export -a`, PHOREPOC_BUILD/epoc32). Skipped when
+# env.sh's; the include tree must be exported first (`phe source export -a`, PHOREPOC_BUILD/epoc32). Skipped when
 # PP_WRAPPERS already holds the wrappers.
 set -eu
 . "$(dirname "$0")/env.sh"
