@@ -1,7 +1,7 @@
 # codecpack
 
-The codec pack brings modern audio and video formats to [Phorepoc](https://github.com/Phorepoc). It's
-[FFmpeg](https://ffmpeg.org) and [OpenH264](https://github.com/cisco/openh264) ported to Symbian, so the phone can play
+The codec pack brings modern audio and video formats to [Phorepoc OS](https://github.com/Phorepoc). It's
+[FFmpeg](https://ffmpeg.org) and [OpenH264](https://github.com/cisco/openh264) ported to Phorepoc OS, so the phone can play
 H.264, HEVC, VP8 and VP9 video and AAC, MP3, Opus, Vorbis and FLAC audio in MP4, Matroska and Ogg files. Without it,
 games and apps with MP4 video play silently.
 
@@ -10,10 +10,10 @@ You don't build it into an image. Users install it from Catalogue when they want
 ## Why it lives on its own
 
 There are two reasons. The first is the license. FFmpeg is LGPL, so it's built as its own library (`pheffmpeg.dll`) that
-the system loads at run time. It never ends up inside any of Phorepoc's own binaries, and you can swap it for your own
+the system loads at run time. It never ends up inside any of Phorepoc OS's own binaries, and you can swap it for your own
 build.
 
-The second is patents. AAC and H.264 are in a grey area, so the pack is never part of a Phorepoc image. It's a
+The second is patents. AAC and H.264 are in a grey area, so the pack is never part of a Phorepoc OS image. It's a
 separate download, and it's up to each user whether to install it.
 
 ## Releases
@@ -40,7 +40,7 @@ docker run --rm -e ARCH=arm -e JOBS=4 -e PHOREPOC_BUILD=/build \
 
 Use `ARCH=x32` for the PC. The libraries land in `$PHOREPOC_BUILD/codecpack/`.
 
-Next, build the Symbian components with this repository added to `PHOREPOC_ADAPTATIONS`, after your device's own
+Next, build the components with this repository added to `PHOREPOC_ADAPTATIONS`, after your device's own
 repositories. On the PC, `pheffmpeg` also needs [cxxrt](https://github.com/Phorepoc/cxxrt), so build that first and add
 it too.
 
@@ -57,7 +57,7 @@ PHOREPOC_ADAPTATIONS=<device repositories>:<path to codecpack> phe component bui
 - `os/src/pheffmpeg/` is the library the video player loads, a small C API over FFmpeg's decoders.
 - `os/src/phevdecsw/` is the software video decoder plug-in (`phevdecsw.dll`) the video player finds through DevVideo; it
   decodes through `pheffmpeg.dll`. On ARM it only takes MPEG-4 Part 2, since the board's video engine does the rest.
-- `os/src/codecs/` has the AAC decoder behind Symbian's own audio framework, now running on FFmpeg.
+- `os/src/codecs/` has the AAC decoder behind the system's own audio framework (the MMF), now running on FFmpeg.
 - `os/src/phefftest/` is a test program that opens and decodes sample clips.
 - `registry/components_codecpack.py` lists the components.
 
