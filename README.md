@@ -13,8 +13,14 @@ There are two reasons. The first is the license. FFmpeg is LGPL, so it's built a
 the system loads at run time. It never ends up inside any of Phorepoc's own binaries, and you can swap it for your own
 build.
 
-The second is patents. AAC and H.264 are in a grey area, so we only publish the source and the recipe. The pack is
-never part of a Phorepoc image, and it's up to each user whether to install it.
+The second is patents. AAC and H.264 are in a grey area, so the pack is never part of a Phorepoc image. It's a
+separate download, and it's up to each user whether to install it.
+
+## Releases
+
+Every release has the pack as an installable SIS file for each architecture: `codecpack-arm.sis` for phones and
+`codecpack-x32.sis` for the PC. The [release workflow](.github/workflows/release.yml) builds them from this repository
+with the pdk's `package.yml`, and Catalogue installs them.
 
 We don't keep copies of FFmpeg or OpenH264 here. The recipes download the exact releases they name and check them
 against a SHA-256. FFmpeg is never configured with `--enable-gpl`, `--enable-version3` or `--enable-nonfree`, and the
