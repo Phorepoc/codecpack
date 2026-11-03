@@ -65,10 +65,12 @@ fi
 ASM=(--disable-asm --disable-x86asm --disable-inline-asm)
 [ "${FFASM:-0}" = 1 ] && ASM=()
 [ "$ARCH" = arm ] && [ "${FFASM:-0}" = 1 ] && ASM=(--enable-neon)
-# x32 (2026-10-16, VM MP4 speed): FFASM=1 = the x86 SIMD kernels (nasm -f elfx32; the container has no nasm: it is unpacked once into
+# x32 (2026-10-16, VM MP4 speed): FFASM=1 = the x86 SIMD kernels (nasm -f elfx32: the web image's nasm, or one unpacked into
 # $CODECPACK_WORK/nasm/root/usr/bin/nasm, or set NASM -- `apt-get download nasm; dpkg -x nasm_*.deb $CODECPACK_WORK/nasm/root`). Runtime CPU detection stays on (cpuid; AVX
 # needs OSXSAVE, which our kernel never sets, so the guest ends up on SSE2/SSSE3/SSE4). Inline asm stays off.
-[ "$ARCH" = x32 ] && [ "${FFASM:-0}" = 1 ] && NASM=${NASM:-$CODECPACK_WORK/nasm/root/usr/bin/nasm}
+if [ "$ARCH" = x32 ] && [ "${FFASM:-0}" = 1 ] && [ -z "${NASM:-}" ]; then   # the unpacked copy, else the image's (web has nasm)
+  NASM=$CODECPACK_WORK/nasm/root/usr/bin/nasm; [ -x "$NASM" ] || NASM=$(command -v nasm || echo nasm)
+fi
 [ "$ARCH" = x32 ] && [ "${FFASM:-0}" = 1 ] && ASM=(--enable-x86asm --x86asmexe=$NASM --disable-inline-asm)
 
 [ "${RECONF:-0}" = 1 ] && rm -rf "$BLD"
