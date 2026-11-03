@@ -56,7 +56,7 @@ COMPONENTS = {
     "phevdecsw": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw.mmp"), allow_wsd=True,   # (stage-timing statics)
                       rom_data=["resource\\plugins\\phevdecsw.rsc=plugins/phevdecsw.rsc"]),
     "phevdecsw_x32": dict(mmp=os.path.join(OS_ROOT, "src/phevdecsw/phevdecsw_x32.mmp"), allow_wsd=True, rom="phevdecsw.dll",
-                          rom_data=["resource\\plugins\\phevdecsw.rsc=plugins/phevdecsw_x32.rsc"]),
+                          rom_data=["resource\\plugins\\phevdecsw.rsc=plugins/phevdecsw.rsc"]),
     # FFmpeg x32 media archives (ARCH=x32 bash recipes/ffmpeg_media.sh) as the replaceable LGPL DLL
     # (`phe component build pheffmpeg_x32 phevdecsw_x32`).
     "pheffmpeg_x32": dict(mmp=os.path.join(OS_ROOT, "src/pheffmpeg/pheffmpeg.mmp"), cdriver=True, allow_wsd=True, static_ctors=True,
