@@ -1,0 +1,22 @@
+Phorepoc codec pack -- licence notice and source offer
+
+This package contains FFmpeg 6.1.2 (https://ffmpeg.org), copyright the FFmpeg developers, licensed under the GNU Lesser
+General Public License version 2.1 or later (LGPL-2.1-or-later). It is configured without --enable-gpl, --enable-version3
+and --enable-nonfree. FFmpeg is built as the separate dynamic library pheffmpeg.dll: you can replace it with your own build
+(modified or not) of the same FFmpeg and the decoder plug-in keeps working. The decoder plug-in phevdecsw.dll is our own code
+(Apache-2.0). Both licence texts, LGPL-2.1.txt and Apache-2.0.txt, are installed with this package in \resource\codecpack\.
+
+Corresponding source, available to anyone who has this package, for at least three years after the release you installed
+it from:
+
+  1. The unmodified FFmpeg source: https://ffmpeg.org/releases/ffmpeg-6.1.2.tar.xz
+     SHA-256 3b624649725ecdc565c903ca6643d41f33bd49239922e45c9b1442c63dca4e38
+  2. The scripts that configure, build and package it, any changes they make to the FFmpeg tree, and our own files:
+       https://github.com/Phorepoc/codecpack   (the release tag of this package)
+     with the toolchain images and build tools in https://github.com/Phorepoc/toolchain and https://github.com/Phorepoc/pdk.
+
+Written offer: if the links above are no longer available, send a request to the address given on the Phorepoc
+organisation page https://github.com/Phorepoc and we will send you the corresponding source on a medium of your choice
+for the cost of the medium.
+
+FFmpeg is a trademark of Fabrice Bellard, originator of the FFmpeg project, and is used here only to name the software.

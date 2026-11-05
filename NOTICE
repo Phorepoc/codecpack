@@ -17,8 +17,9 @@ OpenH264 (https://github.com/cisco/openh264), Copyright (c) 2013, Cisco Systems,
   (LICENSES/BSD-2-Clause-OpenH264.txt). Built from source here. Cisco's patent licence for H.264 covers only the
   binaries Cisco itself distributes, not a build from source.
 
-Patents: AAC and H.264 are patent-grey in many jurisdictions. This pack is distributed as source plus build
-instructions only. It is not part of any Phorepoc image; users install a build of it themselves, through the download
-app, and are responsible for any licences their use needs.
+Source offer: SOURCE-OFFER.txt, installed with the package next to this NOTICE and the licence texts.
+
+Patents: AAC and H.264 are patent-grey in many jurisdictions. This pack is not part of any Phorepoc image; users install
+it themselves through the Catalogue, and are responsible for any licences their use needs.
 
 Thanks to the FFmpeg and OpenH264 projects.
