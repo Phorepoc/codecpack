@@ -3,7 +3,8 @@
 
 """ffmpeg_media_patch -- source patches for the phone media FFmpeg (recipes/ffmpeg_media.sh). Idempotent.
 
-  1. libavutil/tx_template.c: FFT twiddle tables above 4096 points dropped (ffmpeg_small_tx.py, the AAC pack's cut):
+  1. libavutil/tx_template.c: FFT codelets above 4096 points and twiddle tables above 131072 dropped (ffmpeg_small_tx.py; the tables to
+     131072 stay: the x86 SIMD FFT kernels reference them by name):
      they are ~17 MB of static (bss) data per process otherwise. 4096 covers every transform of the enabled codecs
      (AAC 1024, Vorbis <= 2048, Opus/CELT <= 960, MP3 has its own MDCT; H.264/VP8/VP9/HEVC use no FFT).
   2. libavutil/thread.h + libavcodec/pthread_frame.c + libavutil/slicethread.c: worker threads get an explicit
@@ -118,7 +119,7 @@ void *av_malloc(size_t size)
 
 def main(src: str) -> None:
     here = os.path.dirname(os.path.abspath(__file__))
-    subprocess.check_call([sys.executable, os.path.join(here, "ffmpeg_small_tx.py"), src])
+    subprocess.check_call([sys.executable, os.path.join(here, "ffmpeg_small_tx.py"), src, "131072"])
     patch_threads(src)
     patch_offsets(src)
     patch_mem(src)
