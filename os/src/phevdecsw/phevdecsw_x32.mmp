@@ -1,5 +1,5 @@
 // Copyright The Phorepoc Authors
-// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
 // phevdecsw_x32.mmp -- OURS: the codec pack's software DevVideo decoder (phevdecsw.dll, UIDs E70157FC / E70157FD), x32
 // build: every format pheffmpeg decodes (H.264, MPEG-2, MPEG-4 Part 2; a PC has no video engine). Decodes through

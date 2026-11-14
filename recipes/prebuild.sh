@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 #
 # prebuild.sh -- the pdk's package.yml runs it in the toolchain container before the components: the FFmpeg and
 # OpenH264 archives (build.sh) for PHOREPOC_ARCH, and for x32 first cxxrt's archives (pheffmpeg_x32 links them).

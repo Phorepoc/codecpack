@@ -1,5 +1,5 @@
 // Copyright The Phorepoc Authors
-// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
 // phevdec.cpp -- OURS: phevdecsw.dll, the SOFTWARE DevVideo decoder hw device of the codec pack (decoding through the
 // separately installed LGPL pheffmpeg.dll). Derived from a hardware VE decoder (VDU rung V4;

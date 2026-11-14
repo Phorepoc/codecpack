@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 #
 # sis.sh -- the pdk's package.yml runs it after the components: the codec pack SIS for PHOREPOC_ARCH
 # ($PHOREPOC_BUILD/sis/codecpack-<arch>.sis).

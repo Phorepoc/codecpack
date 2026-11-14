@@ -63,7 +63,7 @@ PHOREPOC_ADAPTATIONS=<device repositories>:<path to codecpack> phe component bui
 
 ## License
 
-Our code is Apache-2.0, and the Symbian files we've changed are EPL-2.0 with GPL-2.0-or-later as a Secondary License.
+Our code and the Symbian files we've changed are EPL-2.0 with GPL-2.0-or-later as a Secondary License.
 FFmpeg is LGPL-2.1 or later and OpenH264 is BSD-2-Clause. `NOTICE` and `LICENSES/` have the details, including the
 note on patents.
 

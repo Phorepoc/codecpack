@@ -1,5 +1,5 @@
 /* Copyright The Phorepoc Authors
- * SPDX-License-Identifier: Apache-2.0 */
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later */
 
 // phevdec.h -- OURS: phevdecsw.dll, the codec pack's SOFTWARE DevVideo decoder hardware device. An ECOM plug-in on
 // interface 0x101FB4BE (KUidDevVideoDecoderHwDevice) implementing CMMFVideoDecodeHwDevice, found and driven by

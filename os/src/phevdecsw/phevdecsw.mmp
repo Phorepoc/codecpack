@@ -1,5 +1,5 @@
 // Copyright The Phorepoc Authors
-// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
 // phevdecsw.mmp -- OURS: the codec pack's software DevVideo decoder (phevdecsw.dll, UIDs E70157FC / E70157FD), ARM
 // build: MPEG-4 Part 2 only (PHE_MP4V) -- the hardware video decoder in the ROM does H.264 / MPEG-2. Decodes through

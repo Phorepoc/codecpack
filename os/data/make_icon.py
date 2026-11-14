@@ -1,5 +1,5 @@
 # Copyright The Phorepoc Authors
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 """make_icon.py -- renders the Codec pack icon: a squircle tile (#9b59d0 at the top to #6a2fb0 at the bottom, the
    tile of Phorepoc's app icons) with a white play triangle over a sound wave ("video and audio formats"). Writes
    codecpack_icon.svg          the SVG source (original artwork);
@@ -36,7 +36,7 @@ def svg():
     bars = "\n".join('  <rect x="%.1f" y="%g" width="%.1f" height="%g" rx="1.6" fill="#FFFFFF"/>' % (x - BAR / 2, y - h, BAR, 2 * h)
                      for x, y, h in WAVE)
     return """<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <!-- Codec pack icon: original artwork, Apache-2.0 (The Phorepoc Authors). The tile is the squircle
+  <!-- Codec pack icon: original artwork, EPL-2.0 OR GPL-2.0-or-later (The Phorepoc Authors). The tile is the squircle
        |x|^4.6 + |y|^4.6 = 1, written out as a path by make_icon.py -->
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
